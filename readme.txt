@@ -2,8 +2,8 @@
 Contributors: kanetamru@ishii
 Tags: category, layout, category layout, template layout, template category
 Requires at least: 4.1
-Tested up to: 1.00
-Stable tag: 1.00
+Tested up to: 1.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ show second level category and breadcrumbs.
 	$variable = new ataino_line_category("sub");
 ?>`
 
-*check browsers.*
+*check browsers*
 
 Chrome 41.0+,
 FireFox(Firebug) 36.0+,
@@ -54,3 +54,6 @@ Opera 28.0+
 https://twitter.com/kyanetamaru
 
 == Changelog ==
+
+*1.01*
+fix: load css file in head.

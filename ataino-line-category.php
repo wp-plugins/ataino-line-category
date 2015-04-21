@@ -3,7 +3,7 @@
 Plugin Name: Ataino Line Category
 Plugin URI: https://twitter.com/kyanetamaru
 Description: line category layout for your theme.
-Version: 1.0
+Version: 1.1
 Author: kanetamaru@ishii
 Author URI: https://twitter.com/kyanetamaru
 License: GPLv2
@@ -15,25 +15,22 @@ class ataino_line_category {
 	private $count_sub = true;		/* hide count is [ false ] */
 	private $count_bread = true;	/* hide count is [ false ] */
 	private $arrow = '&nbsp;&gt;&nbsp;'; 	/* arrow mark */
-	private $str =	' (';					/* angle bracket start */
+	private $str =	'&nbsp;(';				/* angle bracket start */
 	private $end =	')';					/* angle bracket end */
 	private $valiable;
 
 	function __construct( $args ) {
-			add_action( 'wp_enqueue_scripts', array( &$this, $this->category_css() ) );
-
-			$this->valiable = $args;
-				if ( $this->valiable == 'main' ) {
-					$this->main_category();
-				} else if ( $this->valiable == 'sub' ) {
-					$this->sub_category();
-				}
-
+		$this->valiable = $args;
+			if ( $this->valiable == 'main' ) {
+				$this->main_category();
+			} else if ( $this->valiable == 'sub' ) {
+				$this->sub_category();
+			}
 	}
 	/**
 	 * main category
 	 */
-	private function main_category () {
+	private function main_category() {
 		$args = array(
 		  'orderby' => 'name',
 		  'parent' => 0,
@@ -51,7 +48,7 @@ class ataino_line_category {
 	/**
 	 * sub category
 	 */
-	private function sub_category () {
+	private function sub_category() {
 		$args = array(
 				  'parent' => get_query_var('cat'),
 				  'pad_counts' => 1
@@ -96,12 +93,16 @@ class ataino_line_category {
 					echo '</div>';
 		}
 	}
-	/**
-	 * line category css
-	 */
-	private function category_css () {
-		$cssPath = plugin_dir_url( __FILE__ ) . 'ataino-line-category.css';
-		wp_enqueue_style( 'line_category_css', $cssPath, false, '1.0' );
-	}
+
 }
+
+/**
+ * line category css
+ */
+function category_css() {
+	$cssPath = plugin_dir_url( __FILE__ ) . 'ataino-line-category.css';
+	wp_enqueue_style( 'line_category_css', $cssPath, array(), '1.0', 'all' );
+}
+add_action( 'wp_enqueue_scripts', 'category_css' );
+
 ?>
